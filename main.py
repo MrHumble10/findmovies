@@ -28,10 +28,10 @@ pip3 install -r requirements.txt
 This will install the packages from requirements.txt for this project.
 '''
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "8BYkEfBA6O6donzWlSihBXox7C0sKR6b"
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Bootstrap5(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('db_uri', 'sqlite:///Movie_DB.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('NEW_DB_URI', 'sqlite:///Movie_DB.db')
 db = SQLAlchemy()
 db.init_app(app)
 
@@ -216,4 +216,3 @@ if __name__ == '__main__':
 
 
 
-# FLASK_KEY=8BYkEfBA6O6donzWlSihBXox7C0sKR6b;SECRET_KEY=Reza123456789;TMDB_ACCESS_TOKEN= eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNDcyMjI0MmYxNThkMWRmMDVjMjdhYmY0NDIxMzRkYiIsInN1YiI6IjY0ZTBkYWY0MzcxMDk3MDBmZmJhNGY3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.afHmyCaE7dQIzWsIJ4qsNMJzA0rFTmEs3qd6Uux0Ir8;TMDB_API_KEY=f4722242f158d1df05c27abf442134db
