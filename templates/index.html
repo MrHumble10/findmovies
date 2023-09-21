@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Log In{% endblock %}
+
+{%block styles%}
+{{super()}}
+<style>
+
+input {
+  color:#96B6C5;
+
+}
+
+.yourclass {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -100; /* puts image into the background */
+}
+.formclass {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  padding-left:8%;
+  top: 0;
+  left: 0;
+}
+</style>
+{%endblock%}
+
+{% block content %}
+
+<img src='./static/assets/img/topmovies.png' class="yourclass" />
+<div class=" container formclass" style=" margin-top:8%">
+    <a style="width:15%; "  href="{{url_for('find')}}" class="btn btn-outline-primary ">Add Movie</a>
+    <a style="width:15%; " href="{{url_for('auth')}}" class=" btn btn-outline-primary  mx-2 my-2" style="align:left">Home</a>
+    <div class="add">
+    <a style="margin-left:11%" href="{{url_for('logout')}}" class="  btn btn-outline-danger  " style="align:left">Log Out</a>
+    </div>
+</div>
+<div class="container">
+
+   {% for movie in movies %}
+  <div class="card" >
+    <div class="front" style="background-image: url({{movie.img_url}});">
+        <p class="large">{{movie.ranking}}</p>
+    </div>
+    <div class="back">
+      <div>
+    <div class="title">{{movie.title}} <span class="release_date">({{movie.year}})</span></div>
+        <div class="rating">
+            <label>{{movie.rating}}</label>
+          <i class="fas fa-star star"></i>
+        </div>
+          <p class="review">{{movie.review}}</p>
+        <p class="overview">
+            {{movie.description}}
+        </p>
+
+        <a href="{{url_for('edit', id=movie.id)}}" class="button">Update</a>
+        <a href="{{url_for('delete', id=movie.id)}}" class="button delete-button">Delete</a>
+
+      </div>
+    </div>
+  </div>
+    {%endfor%}
+</div>
+<div class="container text-center add">
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Log In{% endblock %}
+
+{%block styles%}
+{{super()}}
+<style>
+
+input {
+  color:#96B6C5;
+
+}
+
+.yourclass {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -100; /* puts image into the background */
+}
+.formclass {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  padding-left:8%;
+  top: 0;
+  left: 0;
+}
+</style>
+{%endblock%}
+
+{% block content %}
+
+<img src='./static/assets/img/login.png' class="yourclass" />
+	{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+          <p class="title" style="color:red; padding-left: 11%; padding-top: 11%;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+<div class=" login gradient-background formclass" style="padding-top:152px; " >
+	<form  method="POST" action="{{url_for('login')}}"  >
+		<div class="row g-3 align-items-center mx-4 my-2" >
+			<div class="col-xl-3 col-md-4 group-input">
+				<input style="width:135%" class="p-1 btn btn-outline-danger bg-dark bg-opacity-10 border rounded px-2"  name="username"  type="text"  placeholder="  Username" aria-label="First Name" aria-describedby="addon-wrapping" required="required">
+			</div>
+		</div>
+		<div class="row g-3 align-items-center mx-4 my-2">
+			<div class="col-xl-3 col-md-4">
+				<input style="width:135%" required="required" class="p-1 btn btn-outline-danger bg-dark bg-opacity-10 border rounded"   name="password"  type="password"  placeholder="  Password" aria-label="Password" aria-describedby="addon-wrapping">
+			</div>
+		</div>
+		<div class="row g-3 align-items-center">
+			<div >
+				<input style="width:10%; margin-left:3%;" class="btn btn-outline-danger my-3" id="True" type="submit" value="Log In" name="submit">
+			</div>
+		</div>
+</form>
+</div>
+
+{% endblock %}
