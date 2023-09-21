@@ -35,7 +35,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('NEW_DB_URI', 'sqlite:///
 db = SQLAlchemy()
 db.init_app(app)
 
-app.secret_key = os.environ.get('MY_SECRET_KEY')
+app.secret_key = "Reza123456789123456789"
 
 login_manager = LoginManager()
 login_manager.init_app(app)
